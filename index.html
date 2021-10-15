@@ -35,7 +35,7 @@
           <article class="bg-light p-3 my-5">
             <h3>Cargar productos</h3>
             <hr />
-            <form >
+            <form id="formProducto">
               <div class="mb-3">
                 <label for="" class="form-label">Codigo</label>
                 <input
@@ -43,9 +43,9 @@
                   type="text"
                   class="form-control"
                   placeholder="ingresar un codigo"
-                  required
-                  onblur="validarCampoRequerido(this)"
+                  min="3"
                   />
+                  <!-- onblur="validarCampoRequerido(this)" -->
                   <div class="invalid-feedback">
                     Este campo es obligatorio
                   </div>
@@ -57,25 +57,32 @@
                 type="text" 
                 class="form-control" 
                 placeholder="mouse logitec" 
-                required 
                 minlength="3" 
-                maxlength="35"
+                maxlength="40"
                 />
                 <div class="invalid-feedback">
                   Este campo es obligatorio
                 </div>
               </div>
               <div class="mb-3">
-                <label for="" class="form-label">descripcion</label>
-                <input type="text" class="form-control"  />
+                <label for="" class="form-label">Descripcion</label>
+                <textarea 
+                id="descripcion" 
+                class="form-control"
+                placeholder="Ingrese descripcion del producto"
+                minlength="3"
+                maxlength="90">
+              </textarea>
               </div>
               <div class="mb-3">
-                <label for="" class="form-label">cantidad</label>
+                <label for="" class="form-label">Cantidad</label>
                 <input 
                 type="number" 
                 class="form-control" 
                 id="cantidad"
-                placeholder="ej: 5" 
+                placeholder="ej: 5"
+                minlength="1"
+                maxlength="5"
                 />
                 <div class="invalid-feedback">
                   Este campo es obligatorio y la cantidad de caracteres debe ser entre 1 a 5
@@ -83,9 +90,18 @@
               </div>
               <div class="mb-3">
                 <label for="" class="form-label">URL</label>
-                <input type="text" class="form-control"  />
+                <input 
+                type="text" 
+                class="form-control" 
+                id="url"
+                placeholder="https://www.tucuman.com/"  />
               </div>
               <button class="btn btn-primary" type="submit">Guardar</button>
+              <div class="alert alert-danger mt-4 d-none" 
+              role="alert" 
+              id="msjAlerta">
+                Debe completar los datos marcados
+              </div>
             </form>
           </article>
           
