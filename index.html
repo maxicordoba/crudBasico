@@ -9,7 +9,25 @@
     <title>Crud Productos</title>
 </head>
 <body>
-    <header></header>
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="index.html">CRUD</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="index.html">Inicio</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Admin</a>
+              </li>
+          </div>
+        </div>
+      </nav>
+    </header>
     <main class="container my-5">
         <section>
           <h1 class="display-3 text-center">Administrador productos</h1>
@@ -24,14 +42,28 @@
                   id='codigo'
                   type="text"
                   class="form-control"
-         
-                  minlength="3"
-                  maxlength="10"
+                  placeholder="ingresar un codigo"
+                  required
+                  onblur="validarCampoRequerido(this)"
                   />
+                  <div class="invalid-feedback">
+                    Este campo es obligatorio
+                  </div>
               </div>
               <div class="mb-3">
                 <label for="" class="form-label">Producto</label>
-                <input type="text" class="form-control" />
+                <input 
+                id="producto"
+                type="text" 
+                class="form-control" 
+                placeholder="mouse logitec" 
+                required 
+                minlength="3" 
+                maxlength="35"
+                />
+                <div class="invalid-feedback">
+                  Este campo es obligatorio
+                </div>
               </div>
               <div class="mb-3">
                 <label for="" class="form-label">descripcion</label>
@@ -39,7 +71,15 @@
               </div>
               <div class="mb-3">
                 <label for="" class="form-label">cantidad</label>
-                <input type="number" class="form-control"  />
+                <input 
+                type="number" 
+                class="form-control" 
+                id="cantidad"
+                placeholder="ej: 5" 
+                />
+                <div class="invalid-feedback">
+                  Este campo es obligatorio y la cantidad de caracteres debe ser entre 1 a 5
+                </div>
               </div>
               <div class="mb-3">
                 <label for="" class="form-label">URL</label>
@@ -53,5 +93,6 @@
       </main>
       <footer></footer>
     <script src="js/bootstrap.min.js"></script>
+    <script src="js/validaciones.js"></script>
 </body>
 </html>
