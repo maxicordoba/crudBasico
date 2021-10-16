@@ -1,4 +1,4 @@
-function validarCampoRequerido(input) {
+export function validarCampoRequerido(input) {
   // console.log(input);
   console.log(input.value);
   if (input.value.trim().length > 0 && input.value.trim().length >= 3) {
@@ -12,7 +12,7 @@ function validarCampoRequerido(input) {
   }
 }
 
-function validarNumeros(input) {
+export function validarNumeros(input) {
   //validar con expresiones regulares
   let patron = /^[0-9]{1,5}$/;
   if (patron.test(input.value)) {
@@ -24,7 +24,7 @@ function validarNumeros(input) {
   }
 }
 
-function validarCodigo(input) {
+export function validarCodigo(input) {
   // validar que tenga al menos 3 caracteres
   if (input.value.trim() != "" && input.value.trim().length >= 3) {
     input.className = "form-control is-valid";
@@ -35,7 +35,7 @@ function validarCodigo(input) {
   }
 }
 
-function validarURL(input) {
+export function validarURL(input) {
   let patron = /^https?:\/\/[\w\-]+(\.[\w\-]+)+[/#?]?.*$/;
   if (input.value.trim() != "" && patron.test(input.value.trim())) {
     input.className = "form-control is-valid";
@@ -46,7 +46,7 @@ function validarURL(input) {
   }
 }
 
-function validarGeneral(e) {
+export function validarGeneral(e) {
   e.preventDefault();
   //console.log("desde validar general");
   //console.log(e);
