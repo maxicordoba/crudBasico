@@ -46,8 +46,7 @@ export function validarURL(input) {
   }
 }
 
-export function validarGeneral(e) {
-  e.preventDefault();
+export function validarGeneral() {
   //console.log("desde validar general");
   //console.log(e);
   let alerta = document.querySelector("#msjAlerta");
@@ -60,34 +59,10 @@ export function validarGeneral(e) {
   ) {
     console.log("validacion correcta");
     alerta.className= "alert alert-danger mt-4 d-none";
+    return true;
   } else {
     console.log("validacion incorrecta");
     alerta.className = "alert alert-danger mt-4";
+    return false;
   }
 }
-
-let producto = document.querySelector("#producto");
-let cantidad = document.querySelector("#cantidad");
-let codigo = document.querySelector("#codigo");
-let descripcion = document.querySelector("#descripcion");
-let url = document.querySelector("#url");
-let formulario = document.querySelector("#formProducto");
-//console.log(formulario);
-
-//agregar eventos desde javascript
-producto.addEventListener("blur", () => {
-  validarCampoRequerido(producto);
-});
-cantidad.addEventListener("blur", () => {
-  validarNumeros(cantidad);
-});
-descripcion.addEventListener("blur", () => {
-  validarCampoRequerido(descripcion);
-});
-codigo.addEventListener("blur", () => {
-  validarCampoRequerido(codigo);
-});
-url.addEventListener("blur", () => {
-  validarCampoRequerido(url);
-});
-formulario.addEventListener("submit", validarGeneral);
