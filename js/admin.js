@@ -66,10 +66,48 @@ function agregarProducto() {
   //guardar en el localstorage
   localStorage.setItem('listaProductosKey', JSON.stringify(listaProductos));
   //limpiar el formulario
+  limpiarFormulario();
   //Dibujar fila en la tabla
+  crearFila(productoNuevo);
 }
 
 function cargaInicial(){
+  //si hay algo en el localstorage lo guardo en el arreglo sino lo al arreglo dejo vacio
     listaProductos = JSON.parse(localStorage.getItem('listaProductosKey')) || [];
     console.log(listaProductos)
+
+    // llamar a la funcion que crea filas
+    listaProductos.forEach(itemProducto => {
+      crearFila(itemProducto);
+      
+    })
+}
+
+function crearFila(itemProducto){
+  console.log(itemProducto)
+  // traigo el nodo padre que seria el tbody
+  let tabla = document.querySelector('#tablaProductos');
+  //console.log(tabla)
+  tabla.innerHTML += `<tr>
+  <th scope="row">${itemProducto.codigo}</th>
+  <td>${itemProducto.producto}</td>
+  <td>${itemProducto.descripcion}</td>
+  <td>${itemProducto.cantidad}</td>
+  <td>${itemProducto.url}</td>
+  <td>
+    <button class="btn btn-warning">Editar</button>
+    <button class="btn btn-danger">Borrar</button>
+  </td>
+</tr>`
+}
+
+function limpiarFormulario(){
+  //limpia los value de los elementos del form
+  formulario.reset(); 
+  //limpiar las clases de cada elemento del form
+  codigo.className = 'form-control';
+  producto.className = 'form-control';
+  descripcion.className = 'form-control';
+  cantidad.className = 'form-control';
+  url.className = 'form-control';
 }
