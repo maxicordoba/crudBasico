@@ -83,31 +83,45 @@ function cargaInicial(){
     })
 }
 
-function crearFila(itemProducto){
-  console.log(itemProducto)
+function crearFila(itemProducto) {
+  console.log(itemProducto);
   // traigo el nodo padre que seria el tbody
-  let tabla = document.querySelector('#tablaProductos');
-  //console.log(tabla)
+  let tabla = document.querySelector("#tablaProductos");
+  // console.log(tabla);
   tabla.innerHTML += `<tr>
   <th scope="row">${itemProducto.codigo}</th>
-  <td>${itemProducto.producto}</td>
+  <td>${itemProducto.nombreProducto}</td>
   <td>${itemProducto.descripcion}</td>
   <td>${itemProducto.cantidad}</td>
   <td>${itemProducto.url}</td>
   <td>
-    <button class="btn btn-warning">Editar</button>
+    <button class="btn btn-warning" onclick="prepararEdicionProducto('${itemProducto.codigo}')">Editar</button>
     <button class="btn btn-danger">Borrar</button>
   </td>
-</tr>`
+</tr>`;
 }
 
-function limpiarFormulario(){
-  //limpia los value de los elementos del form
-  formulario.reset(); 
-  //limpiar las clases de cada elemento del form
-  codigo.className = 'form-control';
-  producto.className = 'form-control';
-  descripcion.className = 'form-control';
-  cantidad.className = 'form-control';
-  url.className = 'form-control';
+function limpiarFormulario() {
+  // limpia los value de los elementos del form
+  formulario.reset();
+  // limpiar las clases de cada elemento del form
+  codigo.className = "form-control";
+  // tarea terminar de limpiar todos los inputs
+  productoExistente=false;
+}
+
+//funcion invocada desde el html
+window.prepararEdicionProducto = (codigo) => {
+  //console.log(codigo);
+  // buscar el objeto dentro del arreglo
+  let productoEncontrado = listaProductos.find((itemProducto) => {return itemProducto.codigo == codigo})
+  console.log(productoEncontrado);
+
+  //mostrar los datos del objeto en el formulario
+  document.querySelector("#codigo").value = productoEncontrado.codigo;
+  document.querySelector("#producto").value = productoEncontrado.producto;
+  document.querySelector("#descripcion").value = productoEncontrado.descripcion;
+  document.querySelector("#cantidad").value = productoEncontrado.cantidad;
+  document.querySelector("#url").value = productoEncontrado.url;
+
 }
