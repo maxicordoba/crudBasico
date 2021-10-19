@@ -10,7 +10,7 @@ import { Producto } from "./productoClass.js";
 
 //declarar variables
 let listaProductos = [];
-
+let productoExistente = false; // false -> tengo que agregar un producto nuevo, true -> tengo que modificar
 //este archivo tendra toda la logica de ABM o CRUD
 let producto = document.querySelector("#producto");
 let cantidad = document.querySelector("#cantidad");
@@ -43,9 +43,18 @@ function guardarProducto(e) {
   e.preventDefault();
   // validar los datos del formulario
   if (validarGeneral()) {
-    //crear un nuevo producto
-    console.log("aqui deberia crear un producto");
-    agregarProducto();
+    // tengo que modificar o tengo que agregar uno nuevo
+    //if(productoExistente) es lo mismo
+    if (productoExistente == true){
+      //modificar
+      actualizarProducto();
+    }else{
+      //agregar
+      //crear un nuevo producto
+      console.log("aqui deberia crear un producto");
+      agregarProducto();
+    }
+
   } else {
     console.log("aqui solo mostrar el cartel del error");
   }
@@ -123,5 +132,16 @@ window.prepararEdicionProducto = (codigo) => {
   document.querySelector("#descripcion").value = productoEncontrado.descripcion;
   document.querySelector("#cantidad").value = productoEncontrado.cantidad;
   document.querySelector("#url").value = productoEncontrado.url;
+   
+  // cambiar el valor de la variable bandera para editar
+   productoExistente = true;
 
+};
+
+function actualizarProducto(){
+  console.log('aqui tengo que modificar los productos');
+  console.log(codigo.value);
+  // buscar la posicion del objeto con el codigo indicado
+  let indiceProducto = listaProductos.findIndex((itemProducto)=>{return itemProducto.codigo == codigo.value});
+  console.log(indiceProducto);
 }
