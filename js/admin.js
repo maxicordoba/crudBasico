@@ -18,6 +18,7 @@ let codigo = document.querySelector("#codigo");
 let descripcion = document.querySelector("#descripcion");
 let url = document.querySelector("#url");
 let formulario = document.querySelector("#formProducto");
+let btnAgregar = document.querySelector("#btnAgregar");
 //console.log(formulario);
 
 producto.addEventListener("blur", () => {
@@ -36,6 +37,8 @@ url.addEventListener("blur", () => {
   validarCampoRequerido(url);
 });
 formulario.addEventListener("submit", guardarProducto);
+
+btnAgregar.addEventListener('click', limpiarFormulario)
 
 cargaInicial();
 
@@ -99,7 +102,7 @@ function crearFila(itemProducto) {
   // console.log(tabla);
   tabla.innerHTML += `<tr>
   <th scope="row">${itemProducto.codigo}</th>
-  <td>${itemProducto.nombreProducto}</td>
+  <td>${itemProducto.producto}</td>
   <td>${itemProducto.descripcion}</td>
   <td>${itemProducto.cantidad}</td>
   <td>${itemProducto.url}</td>
@@ -143,5 +146,23 @@ function actualizarProducto(){
   console.log(codigo.value);
   // buscar la posicion del objeto con el codigo indicado
   let indiceProducto = listaProductos.findIndex((itemProducto)=>{return itemProducto.codigo == codigo.value});
-  console.log(indiceProducto);
+
+  //actualizar los valores del objeto encontrado dentro de mi arreglo
+  listaProductos[indiceProducto].producto = document.querySelector("#producto").value;
+  listaProductos[indiceProducto].descripcion = document.querySelector("#descripcion").value;
+  listaProductos[indiceProducto].cantidad = document.querySelector("#cantidad").value;
+  listaProductos[indiceProducto].url = document.querySelector("#url").value;
+
+  console.log(listaProductos[indiceProducto])
+// actualizar el localstorage
+localStorage.setItem('listaProductosKey', JSON.stringify(listaProductos));
+//actualizar la tabla
+borrarFilas();
+listaProductos.forEach((itemProducto)=>{crearFila(itemProducto)});
+}
+
+function borrarFilas(){
+  // traigo el nodo padre que seria el tbody
+  let tabla = document.querySelector("#tablaProductos");
+  tabla.innerHTML = '';
 }
